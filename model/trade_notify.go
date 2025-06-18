@@ -8,10 +8,10 @@ type TradePushReq struct {
 	TradeTime       string `json:"tradeTime"`                 // 交易时间;格式:yyyy-MM-dd HH:mm:ss
 	SourceTradeId   int64  `json:"sourceTradeId,omitempty"`   // 源交易流水号;撤销交易和退货交易才有返回
 	SN              string `json:"sn"`                        // 设备TUSN号
-	TradeAmount     int    `json:"tradeAmount"`               // 交易金额(单位:分)
+	TradeAmount     int64  `json:"tradeAmount"`               // 交易金额(单位:分)
 	PayModeId       int    `json:"payModeId"`                 // 支付方式
 	OutTransId      string `json:"outTransId"`                // 第三方流水号,第三方系统内部流水号
-	CashierId       int    `json:"cashierId,omitempty"`       // 收银员ID号
+	CashierId       int64  `json:"cashierId,omitempty"`       // 收银员ID号
 	SplitFlag       bool   `json:"splitFlag,omitempty"`       // 是否分账交易
 	GoodsSubject    string `json:"goodsSubject,omitempty"`    // 商品名称
 	TradeRemark     string `json:"tradeRemark,omitempty"`     // 交易备注
@@ -22,9 +22,9 @@ type TradePushReq struct {
 	MerchantName    string `json:"merchantName"`              // 商户名称
 	MrchntCode      string `json:"mrchntCode,omitempty"`      // 交易商户编号
 	TerCode         string `json:"terCode,omitempty"`         // 交易终端编号
-	MerchantId      int    `json:"merchantId"`                // 平台商户号
-	TerminalI       int    `json:"terminalId"`                // 平台终端号
-	Fee             int    `json:"fee,omitempty"`             // 交易手续费
+	MerchantId      int64  `json:"merchantId"`                // 平台商户号
+	TerminalI       int64  `json:"terminalId"`                // 平台终端号
+	Fee             int64  `json:"fee,omitempty"`             // 交易手续费(分)
 	PayTime         string `json:"payTime,omitempty"`         // 完成支付时间;目前仅支持微信/支付宝
 }
 
@@ -36,10 +36,10 @@ type TradeNotifyReq struct {
 	TradeTime       string `json:"tradeTime"`                 // 交易时间;格式:yyyy-MM-dd HH:mm:ss
 	SourceTradeId   int64  `json:"sourceTradeId,omitempty"`   // 源交易流水号;撤销交易和退货交易才有返回
 	SN              string `json:"sn"`                        // 设备TUSN号
-	TradeAmount     int    `json:"tradeAmount"`               // 交易金额(单位:分)
+	TradeAmount     int64  `json:"tradeAmount"`               // 交易金额(单位:分)
 	PayModeId       int    `json:"payModeId"`                 // 支付方式
 	OutTransId      string `json:"outTransId"`                // 第三方流水号
-	CashierId       int    `json:"cashierId,omitempty"`       // 收银员ID号
+	CashierId       int64  `json:"cashierId,omitempty"`       // 收银员ID号
 	SplitFlag       bool   `json:"splitFlag,omitempty"`       // 是否分账交易
 	GoodsSubject    string `json:"goodsSubject,omitempty"`    // 商品名称
 	TradeRemark     string `json:"tradeRemark,omitempty"`     // 交易备注
@@ -50,9 +50,9 @@ type TradeNotifyReq struct {
 	MerchantName    string `json:"merchantName"`              // 商户名称
 	MrchntCode      string `json:"mrchntCode,omitempty"`      // 交易商户编号
 	TerCode         string `json:"terCode,omitempty"`         // 交易终端编号
-	MerchantId      int    `json:"merchantId"`                // 平台商户号
-	TerminalId      int    `json:"terminalId"`                // 平台终端号
-	Fee             int    `json:"fee,omitempty"`             // 交易手续费
+	MerchantId      int64  `json:"merchantId"`                // 平台商户号
+	TerminalId      int64  `json:"terminalId"`                // 平台终端号
+	Fee             int64  `json:"fee,omitempty"`             // 交易手续费
 	PayTime         string `json:"payTime,omitempty"`         // 完成支付时间;格式:yyyy-MM-dd HH:mm:ss
 	ChannelMerNo    string `json:"channelMerNo,omitempty"`    // 渠道商户号
 	CardType        string `json:"cardType,omitempty"`        // 借贷标识;00:借记卡;01:贷记卡
@@ -62,10 +62,10 @@ type TradeNotifyReq struct {
 type TradeSplitNotifyReq struct {
 	TradeId          int64  `json:"tradeId"`               // 交易流水号
 	SplitOrderStatus int    `json:"splitOrderStatus"`      // 分账状态;2:成功;3:失败
-	SplitAmount      int    `json:"splitAmount"`           // 分账金额,单位:分
-	SplitFee         int    `json:"splitFee,omitempty"`    // 分账手续费,单位:分
+	SplitAmount      int64  `json:"splitAmount"`           // 分账金额,单位:分
+	SplitFee         int64  `json:"splitFee,omitempty"`    // 分账手续费,单位:分
 	OutTransId       string `json:"outTransId"`            // 第三方系统内部流水号
 	SplitResult      string `json:"splitResult,omitempty"` // 分账结果描述
-	MerchantId       int    `json:"merchantId"`            // 平台商户号
-	TerminalId       int    `json:"terminalId"`            // 平台终端号
+	MerchantId       int64  `json:"merchantId"`            // 平台商户号
+	TerminalId       int64  `json:"terminalId"`            // 平台终端号
 }

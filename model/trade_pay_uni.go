@@ -3,19 +3,19 @@ package model
 // UniPayReq 统一支付
 type UniPayReq struct {
 	SN               string             `json:"sn,omitempty"`               // 设备TUSN号,有固定TUSN号可使用sn参数交易
-	MerchantId       int                `json:"merchantId,omitempty"`       // 平台商户号,渠道对接可使用merchantId和terminalId参数交易
-	TerminalId       int                `json:"terminalId,omitempty"`       // 平台终端号,渠道对接可使用merchantId和terminalId参数交易
-	TradeAmount      int                `json:"tradeAmount"`                // 交易金额(单位:分)
+	MerchantId       int64              `json:"merchantId,omitempty"`       // 平台商户号,渠道对接可使用merchantId和terminalId参数交易
+	TerminalId       int64              `json:"terminalId,omitempty"`       // 平台终端号,渠道对接可使用merchantId和terminalId参数交易
+	TradeAmount      int64              `json:"tradeAmount"`                // 交易金额(单位:分)
 	PayModeId        int                `json:"payModeId"`                  // 支付方式
 	OutTransId       string             `json:"outTransId"`                 // 第三方流水号(需唯一)
-	AppAccessId      int                `json:"appAccessId,omitempty"`      // POS外部接入商编号(用于APP跳转POS收银台场景,outTransId为APP方流水号)
+	AppAccessId      int64              `json:"appAccessId,omitempty"`      // POS外部接入商编号(用于APP跳转POS收银台场景,outTransId为APP方流水号)
 	TradeRemark      string             `json:"tradeRemark,omitempty"`      // 交易备注
-	CashierId        int                `json:"cashierId,omitempty"`        // 收银员ID号
+	CashierId        int64              `json:"cashierId,omitempty"`        // 收银员ID号
 	SplitFlag        bool               `json:"splitFlag"`                  // 是否分账交易(字段已作废)
 	TradeSplitFlag   bool               `json:"tradeSplitFlag"`             // 是否分账交易
 	GoodsSubject     string             `json:"goodsSubject,omitempty"`     // 商品名称(超过30字符截断)
 	UserRemark       string             `json:"userRemark,omitempty"`       // 用户备注
-	ExpireTime       int                `json:"expireTime,omitempty"`       // 超时时间(支付超时时间,单位:秒,取值范围60-1800,默认300:5分钟)
+	ExpireTime       int64              `json:"expireTime,omitempty"`       // 超时时间(支付超时时间,单位:秒,取值范围60-1800,默认300:5分钟)
 	PayCode          string             `json:"payCode,omitempty"`          // 付款凭证码(payModeId为10033/10042/10102时必填)
 	NotifyUrl        string             `json:"notifyUrl,omitempty"`        // 交易结果通知地址
 	SplitNotifyUrl   string             `json:"splitNotifyUrl,omitempty"`   // 分账结果通知地址(tradeSplitFlag为true时有效)
@@ -35,11 +35,11 @@ type UniPayRes struct {
 	TradeStatus     string `json:"tradeStatus"`               // 交易状态(SUCCESS:成功;FAILURE:失败;UNKNOW:未知)
 	TradeTime       string `json:"tradeTime"`                 // 交易时间(yyyy-MM-dd HH:mm:ss)
 	SN              string `json:"sn,omitempty"`              // 设备TUSN号
-	TradeAmount     int    `json:"tradeAmount"`               // 交易金额(单位:分)
+	TradeAmount     int64  `json:"tradeAmount"`               // 交易金额(单位:分)
 	PayModeId       int    `json:"payModeId"`                 // 支付方式
 	OutTransId      string `json:"outTransId"`                // 第三方流水号,第三方系统内部流水号
 	TradeRemark     string `json:"tradeRemark,omitempty"`     // 交易备注
-	CashierId       int    `json:"cashierId,omitempty"`       // 收银员ID号
+	CashierId       int64  `json:"cashierId,omitempty"`       // 收银员ID号
 	SplitFlag       bool   `json:"splitFlag,omitempty"`       // 是否分账交易
 	GoodsSubject    string `json:"goodsSubject,omitempty"`    // 商品名称
 	UserRemark      string `json:"userRemark,omitempty"`      // 用户备注
@@ -52,9 +52,9 @@ type UniPayRes struct {
 	MerchantName    string `json:"merchantName"`              // 商户名称
 	MrchntCode      string `json:"mrchntCode,omitempty"`      // 交易商户编号
 	TerCode         string `json:"terCode,omitempty"`         // 交易终端编号
-	MerchantId      int    `json:"merchantId"`                // 平台商户号
-	TerminalId      int    `json:"terminalId"`                // 平台终端号
-	Fee             int    `json:"fee,omitempty"`             // 交易手续费
+	MerchantId      int64  `json:"merchantId"`                // 平台商户号
+	TerminalId      int64  `json:"terminalId"`                // 平台终端号
+	Fee             int64  `json:"fee,omitempty"`             // 交易手续费
 	PayTime         string `json:"payTime,omitempty"`         // 完成支付时间,目前仅支持微信/支付宝;格式:yyyy-MM-dd HH:mm:ss
 	ChannelMerNo    string `json:"channelMerNo,omitempty"`    // 渠道商户号
 	CardType        string `json:"cardType,omitempty"`        // 借贷标识(00:借记卡;01:贷记卡)

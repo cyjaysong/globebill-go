@@ -80,7 +80,7 @@ type MerchantRegisterReq struct {
 // MerchantRegisterRes 商户进件-新增
 type MerchantRegisterRes struct {
 	OutMerchantNo         string `json:"outMerchantNo"`         // 外部商户号
-	MerchantId            int    `json:"merchantId"`            // 平台商户号
+	MerchantId            int64  `json:"merchantId"`            // 平台商户号
 	MrchntCode            string `json:"mrchntCode"`            // 收单机构商户号
 	AuditStatus           int    `json:"auditStatus"`           // 审核状态;1:待审核;2:审核通过;3:审核拒绝
 	AuditResult           string `json:"auditResult"`           // 审核结果
@@ -91,7 +91,7 @@ type MerchantRegisterRes struct {
 // MerchantUpdateReq 商户进件-修改
 type MerchantUpdateReq struct {
 	OutMerchantNo      string         `json:"outMerchantNo,omitempty"`     // 外部商户号;与merchantId选其一
-	MerchantId         int            `json:"merchantId,omitempty"`        // 平台商户号;与outMerchantNo选其一
+	MerchantId         int64          `json:"merchantId,omitempty"`        // 平台商户号;与outMerchantNo选其一
 	MerchantName       string         `json:"merchantName"`                // 商户名称,netType为3,格式为:XX市XX区/县个体XXX(主营),如:上海市长宁区个体王小明餐饮
 	ShortName          string         `json:"shortName"`                   // 商户简称,netType为3,格式为:XX市XX区/县个体XXX(主营),如:上海市长宁区个体王小明餐饮
 	IsDirectConnect    bool           `json:"isDirectConnect"`             // 是否直联接入,true:是;false:否
@@ -136,7 +136,7 @@ type MerchantUpdateReq struct {
 // MerchantUpdateRes 商户进件-修改
 type MerchantUpdateRes struct {
 	OutMerchantNo         string `json:"outMerchantNo"`         // 外部商户号
-	MerchantId            int    `json:"merchantId"`            // 平台商户号
+	MerchantId            int64  `json:"merchantId"`            // 平台商户号
 	MrchntCode            string `json:"mrchntCode"`            // 收单机构商户号
 	AuditStatus           int    `json:"auditStatus"`           // 审核状态;1:待审核;2:审核通过;3:审核拒绝
 	AuditResult           string `json:"auditResult"`           // 审核结果
@@ -147,13 +147,13 @@ type MerchantUpdateRes struct {
 // MerchantGetReq 商户信息-获取
 type MerchantGetReq struct {
 	OutMerchantNo string `json:"outMerchantNo,omitempty"` // 外部商户号;与merchantId选其一
-	MerchantId    int    `json:"merchantId,omitempty"`    // 平台商户号;与outMerchantNo选其一
+	MerchantId    int64  `json:"merchantId,omitempty"`    // 平台商户号;与outMerchantNo选其一
 }
 
 // MerchantGetRes 商户信息-获取
 type MerchantGetRes struct {
 	OutMerchantNo  string `json:"outMerchantNo"`  // 外部商户号
-	MerchantId     int    `json:"merchantId"`     // 平台商户号
+	MerchantId     int64  `json:"merchantId"`     // 平台商户号
 	MrchntCode     string `json:"mrchntCode"`     // 收单机构商户号
 	AuditStatus    int    `json:"auditStatus"`    // 审核状态;1:待审核;2:审核通过;3:审核拒绝
 	AuditResult    string `json:"auditResult"`    // 审核结果
@@ -197,7 +197,7 @@ type SubMerchantRegisterReq struct {
 type SubMerchantRegisterRes struct {
 	OutMerchantNo     string `json:"outMerchantNo"`     // 外部商户号
 	OutSubMerchantNo  string `json:"outSubMerchantNo"`  // 外部子商户号
-	SubMerchantId     int    `json:"subMerchantId"`     // 平台子商户号
+	SubMerchantId     int64  `json:"subMerchantId"`     // 平台子商户号
 	SubMrchntCode     string `json:"subMrchntCode"`     // 收单机构子商户号
 	AuditStatus       int    `json:"auditStatus"`       // 审核状态;1.待审核;2.审核通过;3.审核拒绝
 	AuditResult       string `json:"auditResult"`       // 审核结果
@@ -207,7 +207,7 @@ type SubMerchantRegisterRes struct {
 // SubMerchantUpdateReq  子商户进件-修改
 type SubMerchantUpdateReq struct {
 	OutSubMerchantNo string        `json:"outSubMerchantNo"`  // 外部子商户号
-	SubMerchantId    int           `json:"subMerchantId"`     // 平台子商户号
+	SubMerchantId    int64         `json:"subMerchantId"`     // 平台子商户号
 	SubMerchantName  string        `json:"subMerchantName"`   // 子商户名称
 	LepCertName      string        `json:"lepCertName"`       // 法人名称
 	Remarks          string        `json:"remarks,omitempty"` // 备注
@@ -218,7 +218,7 @@ type SubMerchantUpdateReq struct {
 // SubMerchantUpdateRes  子商户进件-修改
 type SubMerchantUpdateRes struct {
 	OutSubMerchantNo  string `json:"outSubMerchantNo"`  // 外部子商户号
-	SubMerchantId     int    `json:"subMerchantId"`     // 平台子商户号
+	SubMerchantId     int64  `json:"subMerchantId"`     // 平台子商户号
 	SubMrchntCode     string `json:"subMrchntCode"`     // 收单机构子商户号
 	AuditStatus       int    `json:"auditStatus"`       // 审核状态;1.待审核;2.审核通过;3.审核拒绝
 	AuditResult       string `json:"auditResult"`       // 审核结果
@@ -228,13 +228,13 @@ type SubMerchantUpdateRes struct {
 // SubMerchantGetReq  子商户信息-获取
 type SubMerchantGetReq struct {
 	OutSubMerchantNo string `json:"outSubMerchantNo"` // 外部子商户号
-	SubMerchantId    int    `json:"subMerchantId"`    // 平台子商户号
+	SubMerchantId    int64  `json:"subMerchantId"`    // 平台子商户号
 }
 
 // SubMerchantGetRes  子商户信息-获取
 type SubMerchantGetRes struct {
 	OutSubMerchantNo  string `json:"outSubMerchantNo"`  // 外部子商户号
-	SubMerchantId     int    `json:"subMerchantId"`     // 平台子商户号
+	SubMerchantId     int64  `json:"subMerchantId"`     // 平台子商户号
 	SubMrchntCode     string `json:"subMrchntCode"`     // 收单机构子商户号
 	AuditStatus       int    `json:"auditStatus"`       // 审核状态;1.待审核;2.审核通过;3.审核拒绝
 	AuditResult       string `json:"auditResult"`       // 审核结果

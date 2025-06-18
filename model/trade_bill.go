@@ -34,8 +34,8 @@ type TradeBillDetailItem struct {
 	TerCode               string `json:"terCode"`                         // 钱宝终端号
 	TradeAmount           int64  `json:"tradeAmount"`                     // 交易金额(单位:分)
 	ReceiveAmount         int64  `json:"receiveAmount"`                   // 实收金额(已减去手续费)
-	TradeFee              int    `json:"tradeFee,omitempty"`              // 手续费
-	ReceiveFee            int    `json:"receiveFee,omitempty"`            // 实收手续费
+	TradeFee              int64  `json:"tradeFee,omitempty"`              // 手续费
+	ReceiveFee            int64  `json:"receiveFee,omitempty"`            // 实收手续费
 	PayTime               string `json:"payTime"`                         // 支付时间;格式:yyyy-MM-dd HH:mm:ss
 	PayTypeId             int    `json:"payTypeId"`                       // 支付类型:1006:银行卡;1003:微信;1004:支付宝;1010:云闪付;1034:数字人民币
 	PayAccount            string `json:"payAccount,omitempty"`            // 支付账号
@@ -45,9 +45,9 @@ type TradeBillDetailItem struct {
 	SourceAcquirerTransNO string `json:"sourceAcquirerTransNO,omitempty"` // 源流水号;直联时该值为空
 	SourceBatchNO         string `json:"sourceBatchNO,omitempty"`         // 源批次号
 	SourceTradePayDate    string `json:"sourceTradePayDate,omitempty"`    // 源交易日期;格式:yyyy-MM-dd HH:mm:ss
-	AgencyId              int    `json:"agencyId"`                        // 代理号
-	MerchantId            int    `json:"merchantId"`                      // 平台商户号
-	TerminalId            int    `json:"terminalId"`                      // 平台终端号
+	AgencyId              int64  `json:"agencyId"`                        // 代理号
+	MerchantId            int64  `json:"merchantId"`                      // 平台商户号
+	TerminalId            int64  `json:"terminalId"`                      // 平台终端号
 	TradeId               int64  `json:"tradeId"`                         // 交易流水号
 	IsDirect              bool   `json:"isDirect"`                        // 是否银联直联交易
 	MerchantName          string `json:"merchantName"`                    // 商户名称

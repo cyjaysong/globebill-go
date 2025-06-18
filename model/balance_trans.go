@@ -3,8 +3,8 @@ package model
 // AccountSplitReq 账户分账
 type AccountSplitReq struct {
 	OutTransId        string `json:"outTransId"`            // 第三方系统内部流水号,需唯一
-	MerchantId        int    `json:"merchantId"`            // 被分账平台商户号
-	ReceiveMerchantId int    `json:"receiveMerchantId"`     // 分账平台商户号
+	MerchantId        int64  `json:"merchantId"`            // 被分账平台商户号
+	ReceiveMerchantId int64  `json:"receiveMerchantId"`     // 分账平台商户号
 	SplitAmount       int64  `json:"splitAmount"`           // 分账金额,单位:分
 	SplitRemark       string `json:"splitRemark,omitempty"` // 分账备注
 }
@@ -28,7 +28,7 @@ type AccountSplitRes struct {
 
 // BalanceGetReq 余额查询
 type BalanceGetReq struct {
-	MerchantId int `json:"merchantId"` // 平台商户号
+	MerchantId int64 `json:"merchantId"` // 平台商户号
 }
 
 // BalanceGetRes 余额查询
@@ -42,7 +42,7 @@ type BalanceGetRes struct {
 
 // TxnDetailGetReq 账户变动查询
 type TxnDetailGetReq struct {
-	MerchantId int    `json:"merchantId"`         // 平台商户号
+	MerchantId int64  `json:"merchantId"`         // 平台商户号
 	AcctType   int    `json:"acctType,omitempty"` // 账户类型,1:结算账户,2:余额账户,不传两者都查询
 	IncomeType int    `json:"incomeType"`         // 变动类型,1:调增,2:调减
 	Date       string `json:"date"`               // 日期,格式：yyyy-MM-dd
@@ -50,14 +50,14 @@ type TxnDetailGetReq struct {
 
 // TxnDetailGetRes 账户变动查询
 type TxnDetailGetRes struct {
-	MerchantId int    `json:"merchantId"`         // 平台商户号
+	MerchantId int64  `json:"merchantId"`         // 平台商户号
 	AcctType   int    `json:"acctType,omitempty"` // 账户类型,1:结算账户,2:余额账户,不传两者都查询
 	IncomeType int    `json:"incomeType"`         // 变动类型,1:调增,2:调减
 	Date       string `json:"date"`               // 日期,格式：yyyy-MM-dd
 }
 
 type TxnDetailItem struct {
-	MerchantId    int    `json:"merchantId"`    // 平台商户号
+	MerchantId    int64  `json:"merchantId"`    // 平台商户号
 	MrchntCode    string `json:"mrchntCode"`    // 交易商户号
 	FlowTypeId    int    `json:"flowTypeId"`    // 流水类型,1:分账;2:提现;3:代付子商户,4:结算
 	TxnTime       string `json:"txnTime"`       // 出入账时间,格式: yyyy-MM-dd HH:mm:ss
@@ -71,30 +71,30 @@ type TxnDetailItem struct {
 
 // MerchantWithdrawReq 商户提现
 type MerchantWithdrawReq struct {
-	OutTransId     int    `json:"outTransId"`               // 第三方系统内部流水号，需唯一
-	MerchantId     int    `json:"merchantId"`               // 平台商户号
+	OutTransId     int64  `json:"outTransId"`               // 第三方系统内部流水号，需唯一
+	MerchantId     int64  `json:"merchantId"`               // 平台商户号
 	WithdrawAmount int64  `json:"withdrawAmount"`           // 提现金额,单位:分
 	WithdrawRemark string `json:"withdrawRemark,omitempty"` // 提现
 }
 
 // MerchantWithdrawQueryReq 商户提现查询
 type MerchantWithdrawQueryReq struct {
-	OutTransId int   `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
+	OutTransId int64 `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
 	WithdrawId int64 `json:"withdrawId"` // 提现流水号,与outTransId选其一
 }
 
 // SubMerchantWithdrawReq 子商户提现
 type SubMerchantWithdrawReq struct {
-	OutTransId     int    `json:"outTransId"`               // 第三方系统内部流水号，需唯一
-	MerchantId     int    `json:"merchantId"`               // 平台商户号
-	SubMerchantId  int    `json:"subMerchantId"`            // 平台子商户号
+	OutTransId     int64  `json:"outTransId"`               // 第三方系统内部流水号，需唯一
+	MerchantId     int64  `json:"merchantId"`               // 平台商户号
+	SubMerchantId  int64  `json:"subMerchantId"`            // 平台子商户号
 	WithdrawAmount int64  `json:"withdrawAmount"`           // 提现金额,单位:分
 	WithdrawRemark string `json:"withdrawRemark,omitempty"` // 提现
 }
 
 // SubMerchantWithdrawQueryReq 子商户提现查询
 type SubMerchantWithdrawQueryReq struct {
-	OutTransId int   `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
+	OutTransId int64 `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
 	WithdrawId int64 `json:"withdrawId"` // 提现流水号,与outTransId选其一
 }
 
@@ -112,7 +112,7 @@ type MerchantWithdrawRes struct {
 
 // MerchantDesigHistoryReq 出款历史查询
 type MerchantDesigHistoryReq struct {
-	MerchantId int    `json:"merchantId"` // 平台商户号
+	MerchantId int64  `json:"merchantId"` // 平台商户号
 	StartTime  string `json:"startTime"`  // 开始时间,格式: yyyy-MM-dd HH:mm:ss,查询时间段最长30天;
 	EndTime    string `json:"endTime"`    // 结束时间,格式: yyyy-MM-dd HH:mm:ss,查询时间段最长30天;
 	PageIndex  int    `json:"pageIndex"`  // 页码,从0开始
@@ -133,7 +133,7 @@ type MerchantDesigItem struct {
 	Amt        int64  `json:"amt"`                // 提现金额,单位:分
 	StaCd      string `json:"staCd"`              // 状态码,00:等待出款,02:出款已受理,03:出款成功,04:出款失败
 	SettleType string `json:"settleType"`         // 类型,00:提现,01:结算
-	FeeAmt     int    `json:"feeAmt"`             // 手续费,单位:分
+	FeeAmt     int64  `json:"feeAmt"`             // 手续费,单位:分
 	RespMsg    string `json:"respMsg,omitempty"`  // 响应消息
 	Channel    string `json:"channel,omitempty"`  // 出款通道
 	CardNo     string `json:"cardNo,omitempty"`   // 入账账号
