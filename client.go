@@ -6,23 +6,22 @@ import (
 	"time"
 )
 
-const alphabet = "0123456789ABCDEF"
-
-//const commonProdApiUrl = "http://119.23.124.194:60002"
-//const merchantProdApiUrl = "http://119.23.124.194:19073"
+const commonTestApiUrl = "http://119.23.124.194:60002"
+const merchantTestApiUrl = "http://119.23.124.194:19073"
 
 const commonProdApiUrl = "https://ppapi.globebill.com"
 const merchantProdApiUrl = "https://ppaccess.globebill.com"
 
 type Client struct {
+	reqClient         *reqclient.Client
 	accessId          string // 接入商编号
 	accessPrivateKey  []byte // 接入商私钥
 	platformPublicKey []byte // 平台公钥
-	reqClient         *reqclient.Client
-	devMode           bool
+	prodEnv           bool   // 是否生产环境
+	devMode           bool   // 是否调试模式
 }
 
-func NewClient(accessId, accessPrivateKeyPath, platformPublicKeyPath string, devMode bool) (client *Client, err error) {
+func NewClient(accessId, accessPrivateKeyPath, platformPublicKeyPath string, prodEnv, devMode bool) (client *Client, err error) {
 	privateBytes, err := os.ReadFile(accessPrivateKeyPath)
 	if err != nil {
 		return nil, err
@@ -32,7 +31,8 @@ func NewClient(accessId, accessPrivateKeyPath, platformPublicKeyPath string, dev
 		return nil, err
 	}
 
-	client = &Client{accessId: accessId, accessPrivateKey: privateBytes, platformPublicKey: publicFileBytes, devMode: devMode}
+	client = &Client{accessId: accessId, accessPrivateKey: privateBytes, platformPublicKey: publicFileBytes,
+		prodEnv: prodEnv, devMode: devMode}
 	client.reqClient = reqclient.C().SetTimeout(time.Second * 10).SetCommonRetryCount(1)
 	client.reqClient.SetUserAgent("")
 	if devMode {

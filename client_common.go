@@ -8,10 +8,17 @@ import (
 )
 
 func (t Client) getCommonApiUrl(path string) string {
-	return commonProdApiUrl + path
+	if t.prodEnv {
+		return commonProdApiUrl + path
+	}
+	return commonTestApiUrl + path
 }
+
 func (t Client) getMerchantApiUrl(path string) string {
-	return merchantProdApiUrl + path
+	if t.prodEnv {
+		return merchantProdApiUrl + path
+	}
+	return merchantTestApiUrl + path
 }
 
 // 公共相关接口请求
