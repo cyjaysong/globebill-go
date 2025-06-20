@@ -167,7 +167,7 @@ type MerchantUpmchtGetReq struct {
 
 // MerchantUpmchtGetRes 商户认证信息-获取
 type MerchantUpmchtGetRes struct {
-	UpmchtList string `json:"upmchtList"` // 认证信息
+	UpmchtList []MerchantUpmchtItem `json:"upmchtList"` // 认证信息
 }
 
 type MerchantUpmchtItem struct {

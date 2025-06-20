@@ -50,10 +50,7 @@ type TxnDetailGetReq struct {
 
 // TxnDetailGetRes 账户变动查询
 type TxnDetailGetRes struct {
-	MerchantId int64  `json:"merchantId"`         // 平台商户号
-	AcctType   int    `json:"acctType,omitempty"` // 账户类型,1:结算账户,2:余额账户,不传两者都查询
-	IncomeType int    `json:"incomeType"`         // 变动类型,1:调增,2:调减
-	Date       string `json:"date"`               // 日期,格式：yyyy-MM-dd
+	Data []TxnDetailItem `json:"data"`
 }
 
 type TxnDetailItem struct {
@@ -71,7 +68,7 @@ type TxnDetailItem struct {
 
 // MerchantWithdrawReq 商户提现
 type MerchantWithdrawReq struct {
-	OutTransId     int64  `json:"outTransId"`               // 第三方系统内部流水号，需唯一
+	OutTransId     string `json:"outTransId"`               // 第三方系统内部流水号，需唯一
 	MerchantId     int64  `json:"merchantId"`               // 平台商户号
 	WithdrawAmount int64  `json:"withdrawAmount"`           // 提现金额,单位:分
 	WithdrawRemark string `json:"withdrawRemark,omitempty"` // 提现
@@ -79,13 +76,13 @@ type MerchantWithdrawReq struct {
 
 // MerchantWithdrawQueryReq 商户提现查询
 type MerchantWithdrawQueryReq struct {
-	OutTransId int64 `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
-	WithdrawId int64 `json:"withdrawId"` // 提现流水号,与outTransId选其一
+	OutTransId string `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
+	WithdrawId int64  `json:"withdrawId"` // 提现流水号,与outTransId选其一
 }
 
 // SubMerchantWithdrawReq 子商户提现
 type SubMerchantWithdrawReq struct {
-	OutTransId     int64  `json:"outTransId"`               // 第三方系统内部流水号，需唯一
+	OutTransId     string `json:"outTransId"`               // 第三方系统内部流水号，需唯一
 	MerchantId     int64  `json:"merchantId"`               // 平台商户号
 	SubMerchantId  int64  `json:"subMerchantId"`            // 平台子商户号
 	WithdrawAmount int64  `json:"withdrawAmount"`           // 提现金额,单位:分
@@ -94,8 +91,8 @@ type SubMerchantWithdrawReq struct {
 
 // SubMerchantWithdrawQueryReq 子商户提现查询
 type SubMerchantWithdrawQueryReq struct {
-	OutTransId int64 `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
-	WithdrawId int64 `json:"withdrawId"` // 提现流水号,与outTransId选其一
+	OutTransId string `json:"outTransId"` // 第三方系统内部流水号,与withdrawId选其一
+	WithdrawId int64  `json:"withdrawId"` // 提现流水号,与outTransId选其一
 }
 
 // MerchantWithdrawRes 商户提现
