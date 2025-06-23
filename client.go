@@ -33,7 +33,9 @@ func NewClient(accessId, accessPrivateKeyPath, platformPublicKeyPath string, pro
 
 	client = &Client{accessId: accessId, accessPrivateKey: privateBytes, platformPublicKey: publicFileBytes,
 		prodEnv: prodEnv, devMode: devMode}
-	client.reqClient = reqclient.C().SetTimeout(time.Second * 10).SetCommonRetryCount(1)
+	client.reqClient = reqclient.C().SetCommonRetryCount(1)
+	client.reqClient.SetIdleConnTimeout(time.Second * 3)
+	client.reqClient.SetTimeout(time.Second * 10)
 	client.reqClient.SetUserAgent("")
 	if devMode {
 		client.reqClient.DevMode()

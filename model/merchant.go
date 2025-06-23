@@ -206,13 +206,13 @@ type SubMerchantRegisterRes struct {
 
 // SubMerchantUpdateReq  子商户进件-修改
 type SubMerchantUpdateReq struct {
-	OutSubMerchantNo string        `json:"outSubMerchantNo"`  // 外部子商户号
-	SubMerchantId    int64         `json:"subMerchantId"`     // 平台子商户号
-	SubMerchantName  string        `json:"subMerchantName"`   // 子商户名称
-	LepCertName      string        `json:"lepCertName"`       // 法人名称
-	Remarks          string        `json:"remarks,omitempty"` // 备注
-	SettleAccount    SettleAccount `json:"settleAccount"`     // 结算账户
-	FileList         []FileItem    `json:"fileList"`          // 图片信息
+	OutSubMerchantNo string        `json:"outSubMerchantNo,omitempty"` // 外部子商户号
+	SubMerchantId    int64         `json:"subMerchantId,omitempty"`    // 平台子商户号
+	SubMerchantName  string        `json:"subMerchantName"`            // 子商户名称
+	LepCertName      string        `json:"lepCertName"`                // 法人名称
+	Remarks          string        `json:"remarks,omitempty"`          // 备注
+	SettleAccount    SettleAccount `json:"settleAccount"`              // 结算账户
+	FileList         []FileItem    `json:"fileList"`                   // 图片信息
 }
 
 // SubMerchantUpdateRes  子商户进件-修改
@@ -239,4 +239,22 @@ type SubMerchantGetRes struct {
 	AuditStatus       int    `json:"auditStatus"`       // 审核状态;1.待审核;2.审核通过;3.审核拒绝
 	AuditResult       string `json:"auditResult"`       // 审核结果
 	SubMerchantStatus int    `json:"subMerchantStatus"` // 子商户状态;1.未开通;2.已开通;3.冻结;4.注销;5.拒绝;6.恢复
+}
+
+// MerchantAuditNotifyReq 商户审核结果异步通知
+type MerchantAuditNotifyReq struct {
+	ApiCode string `json:"apiCode" dc:"通知类型,Merchant或者SubMerchant"`
+	// 主商户信息 apiCode == "Merchant"
+	OutMerchantNo  string `json:"outMerchantNo" dc:"我方系统商户编号"`
+	MerchantId     int64  `json:"merchantId" dc:"鲲鹏商户ID"`
+	MrchntCode     string `json:"mrchntCode" dc:"收单机构商户号"`
+	MerchantStatus int    `json:"merchantStatus" dc:"商户状态,1.未开通;2.已开通;3.冻结;4.注销;5.拒绝;6.恢复"`
+	// 子商户信息 apiCode == "SubMerchant"
+	OutSubMerchantNo  string `json:"outSubMerchantNo" dc:"我方系统子商户编号"`
+	SubMerchantId     int64  `json:"subMerchantId" dc:"鲲鹏子商户ID"`
+	SubMrchntCode     string `json:"subMrchntCode" dc:"收单机构子商户号"`
+	SubMerchantStatus int    `json:"subMerchantStatus" dc:"子商户状态,1.未开通;2.已开通;3.冻结;4.注销;5.拒绝;6.恢复"`
+	// 审核结果
+	AuditStatus int    `json:"auditStatus" v:"in:1,2,3" dc:"审核状态,1.待审核;2.审核通过;3.审核拒绝"`
+	AuditResult string `json:"auditResult" dc:"审核结果"`
 }

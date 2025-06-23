@@ -1,6 +1,10 @@
 package globebill
 
-import "github.com/cyjaysong/globebill-go/model"
+import (
+	"errors"
+	"github.com/bytedance/sonic"
+	"github.com/cyjaysong/globebill-go/model"
+)
 
 // MerchantRegister 商户进件-新增
 func (t Client) MerchantRegister(reqBody model.MerchantRegisterReq) (resBody *model.MerchantBaseRes[model.MerchantRegisterRes], err error) {
@@ -87,6 +91,24 @@ func (t Client) MerchantBizGet(reqBody model.MerchantBizGetReq) (resBody *model.
 func (t Client) MerchantUpmchtGet(reqBody model.MerchantUpmchtGetReq) (resBody *model.MerchantBaseRes[model.MerchantUpmchtGetRes], err error) {
 	resBody = new(model.MerchantBaseRes[model.MerchantUpmchtGetRes])
 	if err = t.merchantJsonPost("/Api/Access/Upmcht/Get", reqBody, resBody); err != nil {
+		return nil, err
+	}
+	return
+}
+
+// MerchantAuditNotifyVerify 商户审核通知验签
+func (t Client) MerchantAuditNotifyVerify(AccessId, SignType, SignValue string, httpBody []byte) (notifyReq *model.MerchantAuditNotifyReq, err error) {
+	if AccessId != t.accessId {
+		return nil, errors.New("响应内容接入商编号不一致")
+	}
+	if SignType != "SHA256withRSA" {
+		return nil, errors.New("响应内容签名算法不一致")
+	}
+	if !t.Sha256WithRsaVerify(httpBody, SignValue) {
+		return nil, errors.New("响应内容验签失败")
+	}
+	notifyReq = new(model.MerchantAuditNotifyReq)
+	if err = sonic.Unmarshal(httpBody, notifyReq); err != nil {
 		return nil, err
 	}
 	return
