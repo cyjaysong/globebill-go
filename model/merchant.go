@@ -227,8 +227,8 @@ type SubMerchantUpdateRes struct {
 
 // SubMerchantGetReq  子商户信息-获取
 type SubMerchantGetReq struct {
-	OutSubMerchantNo string `json:"outSubMerchantNo"` // 外部子商户号
-	SubMerchantId    int64  `json:"subMerchantId"`    // 平台子商户号
+	OutSubMerchantNo string `json:"outSubMerchantNo,omitempty"` // 外部子商户号
+	SubMerchantId    int64  `json:"subMerchantId,omitempty"`    // 平台子商户号
 }
 
 // SubMerchantGetRes  子商户信息-获取
