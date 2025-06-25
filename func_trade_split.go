@@ -24,8 +24,8 @@ func (t Client) TradeSplitQuery(reqBody model.TradeSplitQueryReq) (resBody *mode
 	return
 }
 
-// TradePushVerify 交易推送验签
-func (t Client) TradePushVerify(AccessId, SignType, SignValue string, httpBody []byte) (notifyReq *model.TradePushReq, err error) {
+// TradeSplitNotifyVerify 交易分账通知验签
+func (t Client) TradeSplitNotifyVerify(AccessId, SignType, SignValue string, httpBody []byte) (notifyReq *model.TradeSplitNotifyReq, err error) {
 	if AccessId != t.accessId {
 		return nil, errors.New("响应内容接入商编号不一致")
 	}
@@ -35,25 +35,7 @@ func (t Client) TradePushVerify(AccessId, SignType, SignValue string, httpBody [
 	if !t.Sha256WithRsaVerify(httpBody, SignValue) {
 		return nil, errors.New("响应内容验签失败")
 	}
-	notifyReq = new(model.TradePushReq)
-	if err = sonic.Unmarshal(httpBody, notifyReq); err != nil {
-		return nil, err
-	}
-	return
-}
-
-// TradeNotifyVerify 交易通知验签
-func (t Client) TradeNotifyVerify(AccessId, SignType, SignValue string, httpBody []byte) (notifyReq *model.TradeNotifyReq, err error) {
-	if AccessId != t.accessId {
-		return nil, errors.New("响应内容接入商编号不一致")
-	}
-	if SignType != "SHA256withRSA" {
-		return nil, errors.New("响应内容签名算法不一致")
-	}
-	if !t.Sha256WithRsaVerify(httpBody, SignValue) {
-		return nil, errors.New("响应内容验签失败")
-	}
-	notifyReq = new(model.TradeNotifyReq)
+	notifyReq = new(model.TradeSplitNotifyReq)
 	if err = sonic.Unmarshal(httpBody, notifyReq); err != nil {
 		return nil, err
 	}

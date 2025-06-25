@@ -11,7 +11,6 @@ type UniPayReq struct {
 	AppAccessId      int64              `json:"appAccessId,omitempty"`      // POS外部接入商编号(用于APP跳转POS收银台场景,outTransId为APP方流水号)
 	TradeRemark      string             `json:"tradeRemark,omitempty"`      // 交易备注
 	CashierId        int64              `json:"cashierId,omitempty"`        // 收银员ID号
-	SplitFlag        bool               `json:"splitFlag"`                  // 是否分账交易(字段已作废)
 	TradeSplitFlag   bool               `json:"tradeSplitFlag"`             // 是否分账交易
 	GoodsSubject     string             `json:"goodsSubject,omitempty"`     // 商品名称(超过30字符截断)
 	UserRemark       string             `json:"userRemark,omitempty"`       // 用户备注
