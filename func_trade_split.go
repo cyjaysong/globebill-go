@@ -9,7 +9,7 @@ import (
 // TradeSplit 交易分账
 func (t Client) TradeSplit(reqBody model.TradeSplitReq) (resBody *model.BaseRes[model.TradeSplitRes], err error) {
 	resBody = new(model.BaseRes[model.TradeSplitRes])
-	if err = t.commonJsonPost("/split/tradeSplit", reqBody, resBody); err != nil {
+	if err = t.commonJsonPost("/qrcode/tradesplit", reqBody, resBody); err != nil {
 		return nil, err
 	}
 	return
@@ -18,7 +18,7 @@ func (t Client) TradeSplit(reqBody model.TradeSplitReq) (resBody *model.BaseRes[
 // TradeSplitQuery 交易分账查询
 func (t Client) TradeSplitQuery(reqBody model.TradeSplitQueryReq) (resBody *model.BaseRes[model.TradeSplitRes], err error) {
 	resBody = new(model.BaseRes[model.TradeSplitRes])
-	if err = t.commonJsonPost("/split/tradeSplitQuery", reqBody, resBody); err != nil {
+	if err = t.commonJsonPost("/qrcode/tradesplitQuery", reqBody, resBody); err != nil {
 		return nil, err
 	}
 	return

@@ -20,7 +20,7 @@ type MerchantTerminalRegisterReq struct {
 	IsOpenSemiCreditCard bool       `json:"isOpenSemiCreditCard"` // 卡类型权限-准贷记卡
 	IsOpenPrepaidCard    bool       `json:"isOpenPrepaidCard"`    // 卡类型权限-预付费卡
 	IsOpenPreauthorizeQr bool       `json:"isOpenPreauthorizeQr"` // 交易权限-二维码预授权类
-	FileList             []FileItem `json:"fileList"`             // 图片信息
+	FileList             []FileItem `json:"fileList,omitempty"`   // 图片信息
 }
 
 // MerchantTerminalRegisterRes 终端进件-新增
