@@ -33,11 +33,12 @@ type BalanceGetReq struct {
 
 // BalanceGetRes 余额查询
 type BalanceGetRes struct {
-	MrchntCode    string `json:"mrchntCode"`    // 交易商户编号
-	SettleAccount string `json:"settleAccount"` // 结算账户
-	AllAmount     int64  `json:"allAmount"`     // 总余额,单位:分
-	SettleAmount  int64  `json:"settleAmount"`  // 结算户金额,单位:分
-	BalanceAmount int64  `json:"balanceAmount"` // 余额户金额,单位:分
+	MrchntCode       string `json:"mrchntCode"`       // 交易商户编号
+	SettleAccount    string `json:"settleAccount"`    // 结算账户
+	AllAmount        int64  `json:"allAmount"`        // 总余额,单位:分
+	SettleAmount     int64  `json:"settleAmount"`     // 结算户金额,单位:分
+	BalanceAmount    int64  `json:"balanceAmount"`    // 余额户金额,单位:分
+	AvailWithdrawAmt int64  `json:"availWithdrawAmt"` // 可提现金额,单位:分
 }
 
 // TxnDetailGetReq 账户变动查询
